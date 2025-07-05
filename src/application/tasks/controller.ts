@@ -19,7 +19,7 @@ export class TaskController {
     res.json(tasks); 
     }
 
-    findTask: RequestHandler = (req:Request,res:Response) => {
+    findTask(req:Request,res:Response) {
         const {id} = req.params;
         const task = tasks.find((task)=>task.id === parseInt(id));
         if(!task){
@@ -27,6 +27,20 @@ export class TaskController {
             return;
         }
         res.json(task);
+    }
+
+    createTask(req:Request,res:Response){
+        const {message} = req.body;
+        if(!message){
+            res.status(400).json({message:'Message is required'});
+            return;
+        }
+        const newTask = {
+            id:tasks.length + 1,
+            message
+        }
+        tasks.push(newTask);
+        res.status(201).json(newTask);
     }
 
 }

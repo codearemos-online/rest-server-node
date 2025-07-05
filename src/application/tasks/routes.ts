@@ -7,6 +7,8 @@ export class TaskRoutes{
         const taskController = new TaskController();
         router.get('/',taskController.getTasks);
         router.get('/:id',taskController.findTask);
+        router.post('/',taskController.createTask);
+
         return router;
     }
 }
