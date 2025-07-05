@@ -8,6 +8,7 @@ export class TaskRoutes{
         router.get('/',taskController.getTasks);
         router.get('/:id',taskController.findTask);
         router.post('/',taskController.createTask);
+
         return router;
     }
 }

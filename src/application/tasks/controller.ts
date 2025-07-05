@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, RequestHandler } from "express";
 
 const tasks = [
     {
@@ -15,7 +15,7 @@ const tasks = [
 export class TaskController {
 
    
-    getTasks(req:Request,res:Response){
+    getTasks: RequestHandler = (req:Request,res:Response) => {
     res.json(tasks); 
     }
 
