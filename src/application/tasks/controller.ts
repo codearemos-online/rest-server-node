@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, RequestHandler } from "express";
 
 const tasks = [
     {
@@ -15,7 +15,18 @@ const tasks = [
 export class TaskController {
 
    
-    getTasks(req:Request,res:Response){
+    getTasks: RequestHandler = (req:Request,res:Response) => {
     res.json(tasks); 
     }
+
+    findTask: RequestHandler = (req:Request,res:Response) => {
+        const {id} = req.params;
+        const task = tasks.find((task)=>task.id === parseInt(id));
+        if(!task){
+            res.status(404).json({message:'Task not found'});
+            return;
+        }
+        res.json(task);
+    }
+
 }
