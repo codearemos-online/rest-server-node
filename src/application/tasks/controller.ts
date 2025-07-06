@@ -16,9 +16,9 @@ export class TaskController {
 
    
     getTasks: RequestHandler = (req:Request,res:Response) => {
-    res.json(tasks); 
+      res.json(tasks); 
     }
-
+  
     findTask(req:Request,res:Response) {
         const {id} = req.params;
         const task = tasks.find((task)=>task.id === parseInt(id));
@@ -43,4 +43,8 @@ export class TaskController {
         res.status(201).json(newTask);
     }
 
+    deleteTask(req:Request,res:Response){
+      tasks.splice(tasks.indexOf(task),1);
+      res.status(204).send("Task deleted successfully");
+    }
 }
